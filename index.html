@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="style.css">
+
+    <title>password-generator</title>
+</head>
+<body>
+
+<div class="content">
+
+    <div class="header text-center">
+        <h6>PASSWORD GENERATOR TOOL</h6>
+        <h1>Generate a secure password</h1>
+        <h5>Use our online password generator to instantly create a secure, random password.</p>
+    </div>
+
+<div>
+  <div class="input-box d-flex justify-content-center align-items-center">
+    <form class="password-box d-flex align-items-center">
+        <div class="input-group ">
+            <input type="text" id="password" spellcheck="false" class="form-control border-0 fs-2 fw-normal"  aria-describedby="basic-addon1">
+        </div>
+        <button type="button" onClick="copyTextToClipboard()" class="btn iconbtn border-0 copy" data-bs-toggle="modal" data-bs-target="#Modal"><i class="bi bi-files"></i></button>
+        <div class="hide justify-content-center align-items-center" >copy</div>
+        <button type="button" onClick="passwordchange()" class="btn iconbtn border-0 gen"><i class="bi bi-arrow-clockwise"></i></button>
+        <div class="hide1 justify-content-center align-items-center">generate</div>
+    </form>
+  </div> 
+  <div class="password-strength" id="password-strength"></div>
+</div>
+
+
+
+<div class="password-customizer">
+  <h3>Customize your password</h3>
+  <hr>
+
+  <div class="row password-nummber-range d-flex justify-content-between">
+    <div class="col-5"> 
+       <label for="password-nummber" class="form-label">Password Length</label>
+       <div class="d-flex">
+           <input type="number" min="0" max="50" class="form-control password-Length text-center" onchange="passwordchange()" oninput="passwordchange()" value="12" id="password-nummber">
+           <input type="range" min="0" max="50" class="range" onchange="passwordchange()" oninput="passwordchange()"  id="customRange1"> 
+       </div>
+    </div>
+
+
+    <div class="col-4">                                   
+      <div class="row">
+        <div class="row radius-margin">
+         <div class="col-12 d-flex align-items-center">
+            <input class="pointer" type="radio" id="easytosay" onchange="passwordchange()"  name="radios"/>
+            <label class="form-check-label radius-checkbox-css pointer" for="easytosay">
+              Easy to say
+            </label>
+            <i class="bi bi-info-circle-fill pointer info1"></i>
+            <div class="hide2">Avoid numbers and special characters</div>
+         </div>
+        </div>
+
+        <div class="row radius-margin">
+          <div class="col-12 d-flex align-items-center">
+            <input class="pointer" type="radio" id="easytoread" onchange="passwordchange()"  name="radios"/>
+              <label class="form-check-label radius-checkbox-css pointer" for="easytoread">
+                Easy to read 
+              </label>
+              <i class="bi bi-info-circle-fill pointer info2"></i>
+              <div class="hide3">Avoid ambiguous characters like l, 1, O, and 0</div>
+          </div>
+         </div>
+
+        <div class="row radius-margin">
+          <div class="col-12 d-flex align-items-center">
+              <input class="pointer" type="radio" id="allcharacters" onchange="passwordchange()"  name="radios" checked/>
+              <label class="form-check-label radius-checkbox-css pointer" for="allcharacters">
+                All characters
+              </label>
+              <i class="bi bi-info-circle-fill pointer info3"></i>
+              <div class="hide4">Any character combinations like !, 7, h, K, and l1</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="col-3">
+      <div class="row">
+          <div class="row checkbox-margin">
+            <div class="col-12">
+             <div class="form-check form-check-inline">
+              <input class="form-check-input pointer" type="checkbox" id="charslowercase" onchange="setSettings()" >
+              <label class="form-check-label pointer radius-checkbox-css" for="charslowercase">Uppercase</label>
+            </div>
+           </div>
+          </div>
+          
+          <div class="row checkbox-margin">
+           <div class="col-12">
+            <div class="form-check form-check-inline">
+             <input class="form-check-input pointer" type="checkbox" id="charsuppercase" onchange="setSettings()" >
+             <label class="form-check-label pointer radius-checkbox-css" for="charsuppercase">Lowercase</label>
+           </div>
+          </div>
+         </div>
+
+         <div class="row checkbox-margin">
+           <div class="col-12">
+            <div class="form-check form-check-inline">
+             <input class="form-check-input pointer" type="checkbox" id="charsnumber" onchange="setSettings()" >
+             <label class="form-check-label pointer radius-checkbox-css" for="charsnumber">Numbers</label>
+           </div>
+          </div>
+         </div>
+
+         <div class="row checkbox-margin">
+           <div class="col-12">
+            <div class="form-check form-check-inline">
+             <input class="form-check-input pointer" type="checkbox" id="charssymbols" onchange="setSettings()" >
+             <label class="form-check-label pointer radius-checkbox-css" for="charssymbols">Symbols</label>
+           </div>
+          </div>
+         </div>
+      </div>                           
+    </div>
+</div>
+</div>
+    <button type="button" onClick="copyTextToClipboard()"  data-bs-toggle="modal" data-bs-target="#Modal" class="undercopybutton" >Copy Password</button>
+</div>
+
+<div class="modal fade" id="Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">  
+    <div class="container modal-container">
+      <div class="row">
+          <div class="col-12 modal-copy">Copied!</div>
+      </div>
+      <div class="row">
+        <div class="col-6 modaltext">
+          <h2>Make that password easy to remember with LastPass</h2>
+          <p>LastPass does more than generate secure passwords. Try Premium for 30 days and let LastPass remember and autofill passwords for you. Sign up for free – no credit card required.</p>
+          <a data-bs-dismiss="modal" class=" modal-close pe-auto" >No, thanks</a>
+          <button  class="btn pe-auto modal-button">Get LastPass Free</button>
+        </div>
+        <div class="col-6 modalfoto"></div>
+      </div>
+    </div>
+  </div>   
+</div>
+
+
+
+<script src="passwordgenerator.js"></script>
+
+
+
+
+</body>
+</html>
