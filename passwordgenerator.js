@@ -103,6 +103,8 @@ function passwordchange() {
   } else if (range.value >= 11) {
     passwordcolor.style.backgroundColor = "rgb(0, 107, 77)";
     passwordcolor.style.width = "100%";
+  } else {
+    passwordcolor.style.backgroundColor = "transparent";
   }
 }
 
